@@ -3,7 +3,7 @@ import os
 import random
 import sys
 import json
-from urllib.request import urlretrieve
+from urllib.request import urlretrieve, urlopen
 
 import shapefile  # pip install pyshp
 
@@ -122,13 +122,13 @@ try:
                 img_url += "&pitch=" + args.pitch
                 meta_url += "&pitch=" + args.pitch
             try:
-                meta_res = urllib.urlopen(meta_url)
+                meta_res = urlopen(meta_url)
                 meta_body = meta_res.read()
                 meta_json = json.loads(meta_body.decode("utf-8"))
                 if 'status' in meta_json and meta_json['status'] == 'ZERO_RESULTS':
                     pass
                 else:
-                    urllib.urlretrieve(img_url, outfile)
+                    urlretrieve(img_url, outfile)
             except KeyboardInterrupt:
                 sys.exit("exit")
             if os.path.isfile(outfile):
