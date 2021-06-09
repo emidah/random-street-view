@@ -110,7 +110,7 @@ try:
         # print attempts, rand_lat, rand_lon
         # Is (lat,lon) inside borders?
         if point_inside_polygon(rand_lon, rand_lat, borders):
-            print(" In country")
+            #print(" In country")
             lat_lon = str(rand_lat) + "," + str(rand_lon)
             outfile = os.path.join(args.country, IMG_PREFIX + lat_lon + IMG_SUFFIX)
             meta_url = GOOGLE_METADATA_URL + "&location=" + lat_lon
