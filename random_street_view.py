@@ -113,13 +113,11 @@ try:
             #print(" In country")
             lat_lon = str(rand_lat) + "," + str(rand_lon)
             outfile = os.path.join(args.country, IMG_PREFIX + lat_lon + IMG_SUFFIX)
-            meta_url = GOOGLE_METADATA_URL + "&location=" + lat_lon
-            img_url = GOOGLE_IMG_URL + "&location=" + lat_lon
+            meta_url = GOOGLE_METADATA_URL + "&radius=2000&location=" + lat_lon
+            
             if args.heading:
-                img_url += "&heading=" + args.heading
                 meta_url += "&heading=" + args.heading
             if args.pitch:
-                img_url += "&pitch=" + args.pitch
                 meta_url += "&pitch=" + args.pitch
             try:
                 meta_res = urlopen(meta_url)
@@ -128,6 +126,12 @@ try:
                 if 'status' in meta_json and meta_json['status'] == 'ZERO_RESULTS':
                     pass
                 else:
+                    lat_lon = str(meta_json['location']['lat']) + "," + str(meta_json['location']['lng'])
+                    img_url = GOOGLE_IMG_URL + "&location=" + lat_lon
+                    if args.heading:
+                        img_url += "&heading=" + args.heading
+                    if args.pitch:
+                        img_url += "&pitch=" + args.pitch
                     urlretrieve(img_url, outfile)
             except KeyboardInterrupt:
                 sys.exit("exit")
