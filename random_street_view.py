@@ -127,7 +127,7 @@ try:
                     pass
                 else:
                     lat_lon = str(meta_json['location']['lat']) + "," + str(meta_json['location']['lng'])
-                    img_url = GOOGLE_IMG_URL + "&location=" + lat_lon
+                    img_url = GOOGLE_IMG_URL + "&radius=20000&location=" + lat_lon
                     if args.heading:
                         img_url += "&heading=" + args.heading
                     if args.pitch:
