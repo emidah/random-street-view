@@ -112,7 +112,7 @@ try:
         if point_inside_polygon(rand_lon, rand_lat, borders):
             #print(" In country")
             lat_lon = str(rand_lat) + "," + str(rand_lon)
-            outfile = os.path.join(args.country, IMG_PREFIX + lat_lon + IMG_SUFFIX)
+            outfile = os.path.join("country", args.country, IMG_PREFIX + lat_lon + IMG_SUFFIX)
             meta_url = GOOGLE_METADATA_URL + "&radius=20000&location=" + lat_lon
             
             if args.heading:
