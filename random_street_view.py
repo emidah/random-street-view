@@ -98,8 +98,10 @@ print("Getting images")
 imagery_hits = 0
 MAX_URLS = 25000
 
-if not os.path.exists(args.country):
-    os.makedirs(args.country)
+out_folder = os.path.join("country", args.country);
+
+if not os.path.exists(out_folder):
+    os.makedirs(out_folder)
 
 attempts = 0
 try:
@@ -112,7 +114,7 @@ try:
         if point_inside_polygon(rand_lon, rand_lat, borders):
             #print(" In country")
             lat_lon = str(rand_lat) + "," + str(rand_lon)
-            outfile = os.path.join("country", args.country, IMG_PREFIX + lat_lon + IMG_SUFFIX)
+            outfile = os.path.join(out_folder, IMG_PREFIX + lat_lon + IMG_SUFFIX)
             meta_url = GOOGLE_METADATA_URL + "&radius=20000&location=" + lat_lon
             
             if args.heading:
