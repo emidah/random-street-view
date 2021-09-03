@@ -115,7 +115,7 @@ try:
             #print(" In country")
             lat_lon = str(rand_lat) + "," + str(rand_lon)
             outfile = os.path.join(out_folder, IMG_PREFIX + lat_lon + IMG_SUFFIX)
-            meta_url = GOOGLE_METADATA_URL + "&radius=20000&location=" + lat_lon
+            meta_url = GOOGLE_METADATA_URL + "&radius=200000&location=" + lat_lon
             
             if args.heading:
                 meta_url += "&heading=" + args.heading
@@ -129,7 +129,7 @@ try:
                     pass
                 else:
                     lat_lon = str(meta_json['location']['lat']) + "," + str(meta_json['location']['lng'])
-                    img_url = GOOGLE_IMG_URL + "&radius=20000&location=" + lat_lon
+                    img_url = GOOGLE_IMG_URL + "&radius=200000&location=" + lat_lon
                     if args.heading:
                         img_url += "&heading=" + args.heading
                     if args.pitch:
